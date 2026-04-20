@@ -4,13 +4,13 @@ from .models import Submission
 
 def upload_view(request):
     if request.method == 'POST':
-        height_m = request.POST.get('height_m')
+        height_cm = request.POST.get('height_cm')
         front_photo = request.FILES.get('front_photo')
         side_photo = request.FILES.get('side_photo')
 
-        if height_m and front_photo and side_photo:
+        if height_cm and front_photo and side_photo:
             Submission.objects.create(
-                height_m=height_m,
+                height_cm=height_cm,
                 front_photo=front_photo,
                 side_photo=side_photo
             )
