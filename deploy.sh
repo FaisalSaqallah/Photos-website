@@ -40,6 +40,7 @@ sudo tee /etc/nginx/sites-available/photos <<'EOF'
 server {
     listen 80;
     server_name ai-measurement.sahabaplus.com;
+    client_max_body_size 50M;
 
     location = /favicon.ico { access_log off; log_not_found off; }
     
