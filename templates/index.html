@@ -11,8 +11,11 @@
 <body>
     <div class="container">
         <header>
-            <h1>AI Height Model Training</h1>
-            <p>Help us improve our AI by submitting your height along with two photos as instructed below.</p>
+            <div class="logo-container">
+                <img src="{% static 'images/logo2.JPG' %}" alt="شعار حياكة" style="max-height: 80px; max-width: 250px; width: auto; height: auto; border-radius: 8px;">
+            </div>
+            <h1 dir="rtl">تدريب نموذج الذكاء الاصطناعي</h1>
+            <p dir="rtl" style="margin-top: 10px;">ساعدنا في تحسين دقة الذكاء الاصطناعي لحساب الطول من خلال إدخال بياناتك ورفع صورتين كما هو موضح أدناه.</p>
         </header>
 
         {% if messages %}
@@ -23,17 +26,17 @@
             </div>
         {% endif %}
 
-        <section class="instructions">
-            <h2>Photo Instructions</h2>
-            <p>Please take or upload two photos formatted exactly as shown. Ensure your full body is visible.</p>
+        <section class="instructions" dir="rtl">
+            <h2>تعليمات الصور</h2>
+            <p>يرجى التقاط أو رفع صورتين بنفس الوضعية الموضحة. تأكد من ظهور كامل جسمك بوضوح.</p>
             <div class="photo-examples">
                 <div class="example">
-                    <img src="{% static 'images/front.jpeg' %}" alt="Front view example">
-                    <span>1. Front View</span>
+                    <img src="{% static 'images/front.jpeg' %}" alt="مثال الواجهة الأمامية">
+                    <span>1. الواجهة الأمامية</span>
                 </div>
                 <div class="example">
-                    <img src="{% static 'images/side.jpeg' %}" alt="Side view example">
-                    <span>2. Side View</span>
+                    <img src="{% static 'images/side.jpeg' %}" alt="مثال الواجهة الجانبية">
+                    <span>2. الواجهة الجانبية</span>
                 </div>
             </div>
         </section>
@@ -41,37 +44,101 @@
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             
-            <div class="form-group">
-                <label for="height_cm">Your Height (in cm)</label>
-                <input type="number" id="height_cm" name="height_cm" step="0.1" min="50" max="300" placeholder="e.g. 177.8" required>
+            <div class="form-group" dir="rtl">
+                <label for="name">الاسم / Name</label>
+                <input type="text" id="name" name="name" placeholder="أدخل اسمك الكامل" required>
+            </div>
+            
+            <div class="form-group" dir="rtl">
+                <label for="height_cm">الطول / Height (in cm)</label>
+                <input type="number" id="height_cm" name="height_cm" step="0.1" min="50" max="300" placeholder="مثال: 177.8" required>
             </div>
 
-            <div class="form-group image-upload">
-                <label for="front_photo">1. Front Photo</label>
+            <div class="form-group image-upload" dir="rtl">
+                <label for="front_photo">1. الصورة الأمامية (Front Photo)</label>
                 <div class="upload-area">
                     <input type="file" id="front_photo" name="front_photo" accept="image/*" capture="environment" required>
                     <div class="upload-trigger">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 15c.7-1.2 1-2.5.7-3.9-.6-2-2.4-3.5-4.4-3.5h-1.2c-.7-3-3.2-5.2-6.2-5.6-3-.3-5.9 1.3-7.3 4-1.2 2.5-1 6.5.5 8.8m8.7-1.6V21"/><path d="M16 16l-4-4-4 4"/></svg>
-                        <span>Take Photo or Upload</span>
+                        <span>التقط صورة أو ارفع ملف</span>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group image-upload">
-                <label for="side_photo">2. Side Photo</label>
+            <div class="form-group image-upload" dir="rtl">
+                <label for="side_photo">2. الصورة الجانبية (Side Photo)</label>
                 <div class="upload-area">
                     <input type="file" id="side_photo" name="side_photo" accept="image/*" capture="environment" required>
                     <div class="upload-trigger">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 15c.7-1.2 1-2.5.7-3.9-.6-2-2.4-3.5-4.4-3.5h-1.2c-.7-3-3.2-5.2-6.2-5.6-3-.3-5.9 1.3-7.3 4-1.2 2.5-1 6.5.5 8.8m8.7-1.6V21"/><path d="M16 16l-4-4-4 4"/></svg>
-                        <span>Take Photo or Upload</span>
+                        <span>التقط صورة أو ارفع ملف</span>
                     </div>
                 </div>
             </div>
 
-            <button type="submit" class="submit-btn">Submit Data</button>
+            <div class="terms-group" dir="rtl">
+                <label class="terms-checkbox">
+                    <input type="checkbox" name="terms_agreed" required>
+                    <span>لقد قرأت وفهمت <a href="#" id="open-terms-modal">الشروط والأحكام وموافقة جمع البيانات</a> وأوافق عليها صراحةً.</span>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn" dir="rtl">أوافق وأقوم بالرفع</button>
         </form>
     </div>
 
+    <!-- Terms Modal -->
+    <dialog id="termsModal" class="terms-modal" dir="rtl">
+        <div class="modal-header">
+            <h2>موافقة جمع البيانات وشروط الخدمة</h2>
+            <button id="close-terms-modal" class="close-btn" type="button">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>مرحباً بك في شركة حياكة.</p>
+            <p>قبل مشاركتك، يرجى قراءة كيفية استخدامنا لبياناتك بعناية. بإدخال اسمك ورفع صورك وتقديم بيانات طولك، فإنك تبرم اتفاقية معنا فيما يتعلق بمعالجة بياناتك الشخصية.</p>
+
+            <h3>١. ما هي البيانات التي نجمعها</h3>
+            <p>لتقديم خدماتنا وتحقيق أهدافنا التجارية، سنقوم بجمع البيانات الشخصية التالية منك مباشرة:</p>
+            <ul>
+                <li><strong>اسمك:</strong> لغرض توثيق موافقتك النظامية وإدارة طلباتك المتعلقة بحقوق بياناتك.</li>
+                <li><strong>صورك المرفوعة:</strong> (والتي تُصنف كبيانات شخصية لأنها قد تؤدي إلى التعرف عليك).</li>
+                <li><strong>طولك:</strong> وأي بيانات أخرى ذات صلة مباشرة تختار تقديمها.</li>
+            </ul>
+            <p>نحن ملتزمون بأن يكون محتوى البيانات الشخصية مقتصراً على الحد الأدنى اللازم لتحقيق الغرض من جمعها.</p>
+
+            <h3>٢. الغرض من جمع البيانات</h3>
+            <p>الغرض الأساسي من جمع صورك وطولك هو تدريب نماذج الذكاء الاصطناعي (AI) الخاصة بنا. ستتم معالجة هذه البيانات لمساعدة أنظمتنا على التعلم للتعرف على الأشكال البشرية بناءً على صور حقيقية.</p>
+            <p>أما اسمك، فسيتم استخدامه حصرياً لتوثيق موافقتك وإدارة سجلاتنا للتمكن من الاستجابة لأي طلب مستقبلي منك. ونؤكد أنه لن تُعالج بياناتك لاحقاً بصورة تتنافى مع الغرض من جمعها.</p>
+
+            <h3>٣. موافقتك الصريحة</h3>
+            <p>بالنقر على "أوافق" ورفع بياناتك، فإنك تقدم موافقتك الصريحة لنا لمعالجتها للأغراض المذكورة.</p>
+            <ul>
+                <li><strong>المشاركة الطوعية:</strong> تقديم هذه البيانات اختياري تماماً.</li>
+                <li><strong>الحق في الرجوع عن الموافقة:</strong> يجوز لك الرجوع عن موافقتك في أي وقت.</li>
+            </ul>
+
+            <h3>٤. حقوقك كصاحب بيانات شخصية</h3>
+            <p>بموجب نظام حماية البيانات الشخصية، نضمن لك الحقوق التالية:</p>
+            <ul>
+                <li><strong>الحق في العلم:</strong> يحق لك الإحاطة علماً بالمسوغ النظامي أو العملي لجمع بياناتك الشخصية، والغرض من ذلك.</li>
+                <li><strong>الحق في الوصول:</strong> يحق لك الوصول إلى بياناتك الشخصية المتوافرة لدينا والحصول على نسخة واضحة منها.</li>
+                <li><strong>الحق في طلب التصحيح:</strong> يمكنك طلب تصحيح بياناتك المتوافرة لدينا، أو إتمامها، أو تحديثها.</li>
+                <li><strong>الحق في طلب الإتلاف:</strong> يمكنك طلب إتلاف بياناتك الشخصية المتوافرة لدينا مما انتهت الحاجة إليه منها.</li>
+            </ul>
+
+            <h3>٥. أمن وحماية البيانات</h3>
+            <p>سنتخذ ما يلزم من إجراءات ووسائل تنظيمية وإدارية وتقنية تضمن المحافظة على البيانات الشخصية وحمايتها من الوصول غير المشروع أو التلف.</p>
+
+            <h3>٦. الاحتفاظ بالبيانات وإتلافها</h3>
+            <p>سنقوم بإتلاف البيانات الشخصية فور انتهاء الغرض من جمعها. يجوز لنا الاحتفاظ بتلك البيانات بعد انتهاء الغرض من جمعها فقط إذا تمت إزالة كل ما يؤدي إلى معرفة هويتك على وجه التحديد (مثل مسح ارتباط صورك باسمك).</p>
+
+            <h3>٧. مشاركة البيانات والإفصاح عنها</h3>
+            <p>سيتم استخدام بياناتك داخلياً بواسطة شركة حياكة. لن نقوم بالإفصاح عن بياناتك الشخصية لجهات خارجية إلا إذا كان الإفصاح سيقتصر على معالجتها لاحقاً بطريقة لا تؤدي إلى معرفة هويتك على وجه التحديد.</p>
+        </div>
+        <div class="modal-footer" dir="rtl">
+            <button id="accept-terms-btn" class="btn-secondary" type="button">حسناً، فهمت</button>
+        </div>
+    </dialog>
     <script>
         document.querySelectorAll('input[type="file"]').forEach(input => {
             input.addEventListener('change', function() {
@@ -81,14 +148,45 @@
                 
                 if (this.files && this.files.length > 0) {
                     uploadArea.classList.add('success');
-                    textSpan.textContent = 'Uploaded successfully!';
+                    textSpan.textContent = 'تم الرفع بنجاح!';
                     svgIcon.innerHTML = '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>';
                 } else {
                     uploadArea.classList.remove('success');
-                    textSpan.textContent = 'Take Photo or Upload';
+                    textSpan.textContent = 'التقط صورة أو ارفع ملف';
                     svgIcon.innerHTML = '<path d="M21.2 15c.7-1.2 1-2.5.7-3.9-.6-2-2.4-3.5-4.4-3.5h-1.2c-.7-3-3.2-5.2-6.2-5.6-3-.3-5.9 1.3-7.3 4-1.2 2.5-1 6.5.5 8.8m8.7-1.6V21"/><path d="M16 16l-4-4-4 4"/>';
                 }
             });
+        });
+
+        const termsModal = document.getElementById('termsModal');
+        const openTermsBtn = document.getElementById('open-terms-modal');
+        const closeTermsBtn = document.getElementById('close-terms-modal');
+        const acceptTermsBtn = document.getElementById('accept-terms-btn');
+
+        openTermsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            termsModal.showModal();
+        });
+
+        closeTermsBtn.addEventListener('click', () => {
+            termsModal.close();
+        });
+
+        acceptTermsBtn.addEventListener('click', () => {
+            termsModal.close();
+        });
+
+        // Close modal when clicking outside
+        termsModal.addEventListener('click', (e) => {
+            const dialogDimensions = termsModal.getBoundingClientRect();
+            if (
+                e.clientX < dialogDimensions.left ||
+                e.clientX > dialogDimensions.right ||
+                e.clientY < dialogDimensions.top ||
+                e.clientY > dialogDimensions.bottom
+            ) {
+                termsModal.close();
+            }
         });
     </script>
 </body>

@@ -19,12 +19,12 @@ body {
     max-width: 600px;
     width: 100%;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 102, 204, 0.08); /* light blue shadow */
+    box-shadow: 0 10px 30px rgba(50, 155, 187, 0.08); /* light blue shadow */
     overflow: hidden;
 }
 
 header {
-    background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%);
+    background: linear-gradient(135deg, #329bbb 0%, #50cced 100%);
     color: white;
     padding: 2rem;
     text-align: center;
@@ -44,12 +44,12 @@ header p {
 
 .instructions {
     padding: 1.5rem 2rem;
-    background-color: #e6f2ff; /* Light blue instruction area */
-    border-bottom: 1px solid #cce5ff;
+    background-color: #eef8fb; /* Light blue instruction area */
+    border-bottom: 1px solid #cae8f0;
 }
 
 .instructions h2 {
-    color: #004c99;
+    color: #186379;
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
 }
@@ -57,7 +57,7 @@ header p {
 .instructions p {
     font-size: 0.9rem;
     margin-bottom: 1rem;
-    color: #0059b3;
+    color: #217f9c;
 }
 
 .photo-examples {
@@ -101,30 +101,32 @@ label {
     display: block;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: #004c99;
+    color: #186379;
 }
 
-input[type="number"] {
+input[type="number"],
+input[type="text"] {
     width: 100%;
     padding: 0.75rem 1rem;
-    border: 1px solid #cce5ff;
+    border: 1px solid #cae8f0;
     border-radius: 8px;
     font-size: 1rem;
     font-family: inherit;
     transition: all 0.3s;
 }
 
-input[type="number"]:focus {
+input[type="number"]:focus,
+input[type="text"]:focus {
     outline: none;
-    border-color: #0066cc;
-    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    border-color: #329bbb;
+    box-shadow: 0 0 0 3px rgba(50, 155, 187, 0.1);
 }
 
 .upload-area {
     position: relative;
-    border: 2px dashed #b3d9ff;
+    border: 2px dashed #a4d8e7;
     border-radius: 8px;
-    background-color: #f9fcff;
+    background-color: #f7fbfc;
     padding: 2rem;
     text-align: center;
     transition: all 0.3s;
@@ -132,8 +134,8 @@ input[type="number"]:focus {
 }
 
 .upload-area:hover {
-    border-color: #0066cc;
-    background-color: #e6f2ff;
+    border-color: #329bbb;
+    background-color: #eef8fb;
 }
 
 .upload-area input[type="file"] {
@@ -150,7 +152,7 @@ input[type="number"]:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #0066cc;
+    color: #329bbb;
     pointer-events: none;
 }
 
@@ -160,7 +162,7 @@ input[type="number"]:focus {
 
 .submit-btn {
     width: 100%;
-    background: #0066cc;
+    background: #329bbb;
     color: white;
     border: none;
     padding: 1rem;
@@ -173,7 +175,7 @@ input[type="number"]:focus {
 }
 
 .submit-btn:hover {
-    background: #0052a3;
+    background: #267b96;
 }
 
 .submit-btn:active {
@@ -220,4 +222,130 @@ input[type="number"]:focus {
     .container {
         border-radius: 0;
     }
+}
+
+.terms-group {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f7fbfc;
+    border-radius: 8px;
+    border: 1px solid #cae8f0;
+}
+
+.terms-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-weight: 400;
+    cursor: pointer;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.terms-checkbox input {
+    margin-top: 0.3rem;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.terms-checkbox a {
+    color: #329bbb;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+/* Modal Styles */
+dialog.terms-modal {
+    border: none;
+    border-radius: 12px;
+    padding: 0;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    margin: auto;
+    background: #fff;
+    overflow: hidden;
+}
+
+.terms-modal::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.modal-header {
+    background: #f4f8fb;
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    font-size: 1.25rem;
+    color: #186379;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    outline: none;
+}
+
+.close-btn:focus, .close-btn:hover {
+    color: #329bbb;
+    outline: none;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    max-height: calc(85vh - 220px); /* Ensures it doesn't overflow the screen, leaving room for header and footer */
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.7;
+}
+
+.modal-body h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: #329bbb;
+}
+
+.modal-body ul {
+    margin-bottom: 1rem;
+    padding-inline-start: 2rem;
+}
+
+.modal-footer {
+    padding: 1.5rem;
+    background: #f4f8fb;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+
+.btn-secondary {
+    background: #329bbb;
+    color: white;
+    border: none;
+    padding: 0.75rem 2.5rem;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 0;
+    transition: background 0.3s;
+}
+
+.btn-secondary:hover {
+    background: #267b96;
+}
+
+.logo-container {
+    margin-bottom: 1rem;
 }
